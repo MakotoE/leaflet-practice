@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 function App(): React.ReactElement {
-	return <p>Hello world!</p>
+	return <p></p>
 }
 
 ReactDOM.render(
