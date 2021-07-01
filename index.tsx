@@ -24,7 +24,7 @@ function App(): React.ReactElement {
 }
 
 function Trails(): React.ReactElement {
-	return <MapContainer center={[47.653234, -122.9]} zoom={8} style={{height: '400px', width: '600px'}}>
+	return <MapContainer center={[47.67, -122.15]} zoom={8} style={{height: '400px', width: '600px'}}>
 		<TileLayer
 			attribution='<a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 			url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -57,8 +57,8 @@ function Trails(): React.ReactElement {
 		<Marker position={[47.637723, -122.238674]}>
 			<Tooltip>520 Trail</Tooltip>
 		</Marker>
-		<Marker position={[47.645721, -122.335157]}>
-			<Tooltip>Gas Works Park</Tooltip>
+		<Marker position={[47.747645, -121.088125]}>
+			<Tooltip>Pacific Crest Trail</Tooltip>
 		</Marker>
 	</MapContainer>;
 }
