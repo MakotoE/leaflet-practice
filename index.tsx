@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import {MapContainer, TileLayer, Polyline, Marker, Tooltip} from 'react-leaflet';
 import './style.css';
 import highways from './highways.json';
-import L from 'leaflet';
+import L, {LatLngTuple, PointTuple} from 'leaflet';
 import {useState} from 'react';
 
 ReactDOM.render(
@@ -14,6 +14,13 @@ ReactDOM.render(
 function App(): React.ReactElement {
 
 	return <>
+		<a
+			target="_blank"
+			rel="noopener noreferrer"
+			href="https://github.com/MakotoE/leaflet-practice"
+		>
+			https://github.com/MakotoE/leaflet-practice
+		</a>
 		<h1>Top 10 Trails and Parks</h1>
 		<h2>Hover over marker to see name!</h2>
 		<Trails />
@@ -26,7 +33,7 @@ function App(): React.ReactElement {
 function Trails(): React.ReactElement {
 	return <MapContainer center={[47.67, -122.15]} zoom={8} style={{height: '400px', width: '600px'}}>
 		<TileLayer
-			attribution='<a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+			attribution='<a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
 			url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			detectRetina ={true}
 		/>
@@ -64,15 +71,15 @@ function Trails(): React.ReactElement {
 }
 
 function Highways(): React.ReactElement {
-	const defaultSize = [40, 40];
-	const largeSize = [60, 60];
+	const defaultSize: PointTuple = [40, 40];
+	const largeSize: PointTuple = [60, 60];
 	const [i5Size, setI5Size] = useState(defaultSize);
 	const [i90Size, setI90Size] = useState(defaultSize);
 	const [i405Size, setI405Size] = useState(defaultSize);
 
 	return <MapContainer center={[47.5574326,-122.1912965]} zoom={9} style={{height: '400px', width: '600px'}}>
 		<TileLayer
-			attribution='Wikipedia and <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+			attribution='Wikipedia and <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
 			url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			detectRetina ={true}
 		/>
@@ -84,7 +91,7 @@ function Highways(): React.ReactElement {
 				'mouseout': () => setI5Size(defaultSize),
 			}}
 		/>
-		<Polyline pathOptions={{color: '#3f4cf8'}} positions={highways.i5}>
+		<Polyline pathOptions={{color: '#3f4cf8'}} positions={highways.i5 as LatLngTuple[]}>
 			<Tooltip>I-5</Tooltip>
 		</Polyline>
 
@@ -96,7 +103,7 @@ function Highways(): React.ReactElement {
 				'mouseout': () => setI90Size(defaultSize),
 			}}
 		/>
-		<Polyline pathOptions={{color: '#3f4cf8'}} positions={highways.i90} />
+		<Polyline pathOptions={{color: '#3f4cf8'}} positions={highways.i90 as LatLngTuple[]} />
 
 		<Marker
 			position={[47.46222302295848, -122.2646296355187]}
@@ -106,6 +113,6 @@ function Highways(): React.ReactElement {
 				'mouseout': () => setI405Size(defaultSize),
 			}}
 		/>
-		<Polyline pathOptions={{color: '#3f4cf8'}} positions={highways.i405} />
+		<Polyline pathOptions={{color: '#3f4cf8'}} positions={highways.i405 as LatLngTuple[]} />
 	</MapContainer>;
 }
